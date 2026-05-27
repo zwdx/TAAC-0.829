@@ -1,0 +1,42 @@
+# opt_bce_pos_weight — 平台上传清单（扁平目录，禁止子文件夹）
+# 基线：opt_semantic_social_calendar + E_pos weighted BCE（路线 0 / focal_loss_tuning）。
+
+必选（训练，同一扁平目录）:
+  train.py
+  trainer.py
+  model.py
+  dataset.py
+  utils.py
+  alignment.py
+  alignment_pairs.json
+  run.sh
+  cn_request_calendar.csv
+
+必选（评测，覆盖评测容器中的同名文件）:
+  dataset.py
+  model.py
+  alignment.py
+  infer.py
+  alignment_pairs.json
+  cn_request_calendar.csv
+
+不要上传:
+  evaluation/infer.py
+  tests/ scripts/ social_calendar_builder.py
+  check_social_calendar_coverage.py README.md broken.md .pytest_cache/
+
+启动训练:
+  bash run.sh
+
+E0 对照（unweighted BCE）:
+  bash run.sh
+
+E_pos（weighted BCE，三选一互斥）:
+  bash run.sh --loss_type bce_weighted --estimate_train_positive_rate
+  # 或: --train_positive_rate 0.01
+  # 或: --bce_pos_weight 99.0
+
+train_config.json 含 effective_bce_pos_weight；E_pos+estimate 时还含
+  estimated_train_positive_rate / estimated_train_n_pos / estimated_train_n_total
+
+ckpt 与 opt_semantic_social_calendar 结构兼容；loss 配方不同需全量重训对比 E0/E_pos。
