@@ -1,5 +1,7 @@
 ﻿# TAAC PCVRHyFormer Competition Optimization Solution
 
+[English](README_en.md) | [中文](README.md)
+
 This is the optimization solution submitted for the TAAC PCVR (Post-Click Conversion Rate) task. Building upon the official baseline (PCVRHyFormer), this solution focuses on temporal feature engineering, multimodal semantic fusion, and engineering acceleration to construct a highly efficient and performant recommendation model architecture.
 
 ---
@@ -22,33 +24,4 @@ Our evolution is primarily based on the following four core dimensions of optimi
 
 ### 4. System-Level Engineering and Training Acceleration (Training Acceleration)
 
-**Concept**: To achieve rapid iterations for feature and structure experiments, we implemented non-intrusive acceleration modifications tailored to underlying hardware characteristics. This set of optimization seamlessly integrates BF16 mixed-precision training, TF32 calculation acceleration, PyTorch's built-in graph compilation (	orch.compile), and dynamic scaling for large Batch Sizes. With all acceleration components decoupled via command-line arguments, we managed to reduce the wall-clock batch running time by approximately 35% ~ 50% without compromising any evaluation precision (AUC metrics and model comparability).
-
----
-
-## 📦 How to Run
-
-You can start the training with all optimizations enabled by default as specified in the startup script:
-
-`ash
-bash run.sh
-`
-
-For engineering acceleration, environmental optimization arguments can be appended directly to the command:
-
-`ash
-# e.g., Enable BF16 mixed precision, graph compilation optimization, and increase Batch Size to boost throughput
-
-[English](README_en.md) | [中文](README.md)
-
-bash run.sh --amp bf16 --torch_compile --batch_size 512
-`
-
----
-
-## 📑 Platform Submission Guidelines
-
-When packaging for the TAAC evaluation environment, all code must be placed in a flat directory.
-Ensure the uploaded package contains the following core dependencies required for running logic and feature parsing:
-	rain.py, 	rainer.py, model.py, dataset.py, utils.py, lignment.py, lignment_pairs.json, 
-un.sh, cn_request_calendar.csv, along with infer.py used for evaluation.
+**Concept**: To achieve rapid iterations for feature and structure experiments, we implemented non-intrusive acceleration modifications tailored to underlying hardware characteristics. This set of optimization seamlessly integrates BF16 mixed-precision training, TF32 calculation acceleration, PyTorch's built-in graph compilation (torch.compile), and dynamic scaling for large Batch Sizes. With all acceleration components decoupled via command-line arguments, we managed to reduce the wall-clock batch running time by approximately 35% ~ 50% without compromising any evaluation precision (AUC metrics and model comparability).
