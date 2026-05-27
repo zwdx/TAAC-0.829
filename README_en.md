@@ -1,7 +1,5 @@
 ﻿# TAAC PCVRHyFormer Competition Optimization Solution
 
-[English](README_en.md) | [中文](README.md)
-
 This is the optimization solution submitted for the TAAC PCVR (Post-Click Conversion Rate) task. Building upon the official baseline (PCVRHyFormer), this solution focuses on temporal feature engineering, multimodal semantic fusion, and engineering acceleration to construct a highly efficient and performant recommendation model architecture.
 
 ---
@@ -41,6 +39,8 @@ For engineering acceleration, environmental optimization arguments can be append
 `ash
 # e.g., Enable BF16 mixed precision, graph compilation optimization, and increase Batch Size to boost throughput
 
+[English](README_en.md) | [中文](README.md)
+
 bash run.sh --amp bf16 --torch_compile --batch_size 512
 `
 
@@ -50,4 +50,5 @@ bash run.sh --amp bf16 --torch_compile --batch_size 512
 
 When packaging for the TAAC evaluation environment, all code must be placed in a flat directory.
 Ensure the uploaded package contains the following core dependencies required for running logic and feature parsing:
-	rain.py, 	rainer.py, model.py, dataset.py, utils.py, lignment.py, lignment_pairs.json, un.sh, cn_request_calendar.csv, along with infer.py used for evaluation.
+	rain.py, 	rainer.py, model.py, dataset.py, utils.py, lignment.py, lignment_pairs.json, 
+un.sh, cn_request_calendar.csv, along with infer.py used for evaluation.
